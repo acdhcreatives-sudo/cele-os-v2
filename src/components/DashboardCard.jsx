@@ -3,7 +3,7 @@ import React from "react";
 function DashboardCard({
   title,
   value,
-  color = "text-[#6F4E37]",
+  color = "text-[#F57C00]",
   onClick,
   icon,
 }) {
@@ -11,40 +11,48 @@ function DashboardCard({
     <button
       onClick={onClick}
       className="
+        relative
         w-full
-        bg-white
+        overflow-hidden
         rounded-2xl
+        bg-white
         shadow-md
-        p-4 sm:p-5 lg:p-6
-        text-left
-        cursor-pointer
+        border
+        border-gray-200
         hover:shadow-xl
         hover:-translate-y-1
         active:scale-[0.98]
         transition-all
         duration-300
-        border
-        border-transparent
-        hover:border-[#D7CCC8]
+        text-left
       "
     >
-      <div className="flex items-center justify-between mb-3">
+      {/* Orange Accent */}
+      <div className="h-2 w-full bg-[#F57C00]" />
 
-        <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-[#4E342E]">
-          {title}
-        </h3>
+      <div className="p-4 sm:p-5 lg:p-6">
 
-        {icon && (
-          <span className="text-2xl sm:text-3xl">
+        <div className="flex items-center justify-between">
+
+          <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-[#121212]">
+            {title}
+          </h3>
+
+          <div className="text-3xl">
             {icon}
-          </span>
-        )}
+          </div>
+
+        </div>
+
+        <p className={`mt-5 text-3xl lg:text-4xl font-bold ${color}`}>
+          {value}
+        </p>
+
+        <p className="mt-4 text-sm text-[#0B3C5D] font-medium">
+          View Details →
+        </p>
 
       </div>
-
-      <p className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${color}`}>
-        {value}
-      </p>
     </button>
   );
 }

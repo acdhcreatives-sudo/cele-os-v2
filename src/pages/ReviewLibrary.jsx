@@ -1,21 +1,20 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PageLayout from "../components/PageLayout";
 import { getLibrary } from "../services/library";
 
 export default function ReviewLibrary() {
-  const navigate = useNavigate();
-
   const [files, setFiles] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadLibrary() {
       try {
         const data = await getLibrary();
         setFiles(data);
-      } catch (error) {
-        console.error(error);
       } finally {
         setLoading(false);
       }
@@ -31,65 +30,45 @@ export default function ReviewLibrary() {
   }, [files, search]);
 
   return (
-    <div className="flex-1 p-6">
-      <h1 className="text-3xl font-bold mb-6">
-        📚 Review Library
-      </h1>
-
+    <PageLayout
+      title="📚 Review Library"
+      subtitle="Browse all your review materials"
+    >
       <input
         type="text"
-        placeholder="Search review materials..."
+        placeholder="🔍 Search..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="w-full border rounded-lg p-3 mb-6"
+        className="w-full rounded-xl border border-gray-300 p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-[#F57C00]"
       />
 
       {loading ? (
-        <p>Loading library...</p>
-      ) : filteredFiles.length === 0 ? (
-        <p>No review materials found.</p>
+        <p>Loading...</p>
       ) : (
-        <div className="grid gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
           {filteredFiles.map((file) => (
-            <div
+            <button
               key={file.id}
-              className="border rounded-xl p-5 shadow-sm bg-white"
+              onClick={() => navigate(`/study/${file.id}`)}
+              className="bg-white rounded-2xl border border-gray-200 shadow hover:shadow-xl transition p-5 text-left"
             >
-              <h2 className="font-semibold text-lg">
+              <div className="h-2 bg-[#F57C00] rounded-full mb-4"></div>
+
+              <h2 className="font-bold text-lg text-[#121212]">
                 {file.title}
               </h2>
 
-              <p className="text-sm text-gray-600 mt-1">
-                📁 {file.folder}
+              <p className="text-sm text-gray-500 mt-1">
+                {file.folder}
               </p>
 
-              <p className="text-xs text-gray-500 mt-1">
-                {file.type}
+              <p className="mt-5 text-[#0B3C5D] font-semibold">
+                Open Workspace →
               </p>
-
-              <div className="flex gap-3 mt-4">
-
-                <button
-                  onClick={() => navigate(`/study/${file.id}`)}
-                  className="bg-[#6d4c41] text-white px-4 py-2 rounded-lg hover:bg-[#5d4037]"
-                >
-                  📖 Study
-                </button>
-
-                <a
-                  href={file.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-                >
-                  🔗 Drive
-                </a>
-
-              </div>
-            </div>
+            </button>
           ))}
         </div>
       )}
-    </div>
+    </PageLayout>
   );
 }

@@ -29,7 +29,34 @@ function InstallButton() {
   return (
     <button
       onClick={installApp}
-      className="fixed bottom-6 right-6 bg-[#6F4E37] text-white px-5 py-3 rounded-xl shadow-xl hover:bg-[#5D4037] transition z-50"
+      className="
+        fixed
+        bottom-5
+        right-5
+        z-50
+
+        flex
+        items-center
+        gap-2
+
+        rounded-2xl
+        bg-[#F57C00]
+        px-5
+        py-3
+
+        text-sm
+        sm:text-base
+        font-semibold
+        text-white
+
+        shadow-xl
+        transition-all
+        duration-300
+
+        hover:bg-[#d96f00]
+        hover:scale-105
+        active:scale-95
+      "
     >
       📲 Install CELE OS
     </button>

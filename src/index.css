@@ -2,7 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+/* ==========================
+   CELE OS Engineering Theme
+========================== */
+
+:root{
+  --primary: #F57C00;      /* Engineering Orange */
+  --secondary: #0B3C5D;    /* Navy Blue */
+  --dark: #121212;         /* Black */
+  --background: #F5F7FA;   /* Light Gray */
+  --surface: #FFFFFF;      /* White */
+
+  --text: #1E1E1E;
+  --text-light: #6B7280;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
   margin: 0;
   font-family: Inter, system-ui, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button{
+  font: inherit;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
 }

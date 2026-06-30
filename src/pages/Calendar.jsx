@@ -1,15 +1,20 @@
-function Calendar() {
-  return (
-    <main className="flex-1 p-8">
-      <h1 className="text-4xl font-bold text-[#3e2723]">
-        📅 Calendar
-      </h1>
+import PageLayout from "../components/PageLayout";
 
-      <p className="mt-4 text-gray-500">
-        Coming Soon...
-      </p>
-    </main>
+export default function Calendar() {
+  return (
+    <PageLayout
+      title="📅 Study Calendar"
+      subtitle="Plan and organize your review schedule"
+    >
+      <div className="bg-white rounded-2xl shadow-md p-6 border-t-4 border-[#F57C00]">
+        <h2 className="text-xl font-bold text-[#121212] mb-3">
+          Calendar
+        </h2>
+
+        <p className="text-gray-600">
+          Your scheduled study sessions will appear here.
+        </p>
+      </div>
+    </PageLayout>
   );
 }
-
-export default Calendar;

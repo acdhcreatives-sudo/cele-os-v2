@@ -1,117 +1,41 @@
-import { useState } from "react";
 import { saveUser } from "../services/storage";
 
-function Welcome() {
-  const [name, setName] = useState("");
-  const [exam, setExam] = useState("November 2026");
-  const [reviewCenter, setReviewCenter] = useState("");
+export default function Welcome() {
 
-  const handleContinue = () => {
-    if (!name.trim()) {
-      alert("Please enter your name.");
-      return;
-    }
-
+  function start() {
     saveUser({
-      name: name.trim(),
-      exam,
-      reviewCenter,
-      createdAt: new Date().toISOString(),
+      name: "Engineer",
     });
 
-    // Reload para mabasa agad ng App.jsx ang bagong user
     window.location.reload();
-  };
+  }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-[#F8F5F2] px-6">
+    <div className="min-h-screen bg-[#F5F7FA] flex items-center justify-center p-5">
 
-      <div className="w-full max-w-xl bg-white rounded-3xl shadow-2xl p-10">
+      <div className="bg-white rounded-3xl shadow-xl p-8 w-full max-w-md text-center">
 
-        <div className="text-center mb-10">
-
-          <div className="text-6xl mb-4">
-            ☕
-          </div>
-
-          <h1 className="text-4xl font-bold text-[#3E2723]">
-            Welcome to CELE OS
-          </h1>
-
-          <p className="text-gray-500 mt-3">
-            Your Civil Engineering Productivity Operating System
-          </p>
-
+        <div className="text-6xl mb-5">
+          👷
         </div>
 
-        <div className="space-y-6">
+        <h1 className="text-3xl font-bold text-[#121212]">
+          Welcome to CELE OS
+        </h1>
 
-          <div>
-            <label className="block mb-2 font-semibold text-[#3E2723]">
-              What should we call you?
-            </label>
-
-            <input
-              type="text"
-              placeholder="Juan Dela Cruz"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full rounded-xl border border-[#D8CFC7] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6F4E37]"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-2 font-semibold text-[#3E2723]">
-              Target CELE Exam
-            </label>
-
-            <select
-              value={exam}
-              onChange={(e) => setExam(e.target.value)}
-              className="w-full rounded-xl border border-[#D8CFC7] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6F4E37]"
-            >
-              <option>November 2026</option>
-              <option>April 2027</option>
-              <option>November 2027</option>
-              <option>April 2028</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block mb-2 font-semibold text-[#3E2723]">
-              Review Center
-              <span className="text-gray-400 font-normal">
-                {" "}
-                (Optional)
-              </span>
-            </label>
-
-            <input
-              type="text"
-              placeholder="GERTC, Besavilla, Padilla..."
-              value={reviewCenter}
-              onChange={(e) => setReviewCenter(e.target.value)}
-              className="w-full rounded-xl border border-[#D8CFC7] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6F4E37]"
-            />
-          </div>
-
-          <button
-            onClick={handleContinue}
-            className="w-full bg-[#6F4E37] hover:bg-[#5D4037] text-white rounded-xl py-4 font-semibold text-lg transition-all duration-300 hover:scale-[1.02]"
-          >
-            Continue →
-          </button>
-
-        </div>
-
-        <p className="text-center text-sm text-gray-400 mt-8">
-          Your progress is stored locally on this device.
+        <p className="mt-3 text-gray-600">
+          Your Engineering Productivity System
         </p>
+
+        <button
+          onClick={start}
+          className="mt-8 w-full bg-[#F57C00] hover:bg-[#d96f00] text-white py-3 rounded-xl font-semibold transition"
+        >
+          Get Started
+        </button>
 
       </div>
 
-    </main>
+    </div>
   );
 }
-
-export default Welcome;
