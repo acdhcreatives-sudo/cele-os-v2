@@ -5,7 +5,6 @@ import { VitePWA } from "vite-plugin-pwa";
 export default defineConfig({
   plugins: [
     react(),
-
     VitePWA({
       registerType: "autoUpdate",
 
@@ -22,16 +21,12 @@ export default defineConfig({
         short_name: "CELE OS",
         description:
           "Civil Engineering Licensure Examination Productivity Operating System",
-
         theme_color: "#5D4037",
         background_color: "#F8F5F2",
-
         display: "standalone",
         orientation: "portrait",
-
         start_url: "/",
         scope: "/",
-
         icons: [
           {
             src: "/web-app-manifest-192x192.png",
