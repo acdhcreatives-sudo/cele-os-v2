@@ -8,29 +8,44 @@ function DashboardCard({
   icon,
 }) {
   return (
-    <div
+    <button
       onClick={onClick}
-      className="bg-white rounded-2xl shadow-md p-6 cursor-pointer
-                 hover:shadow-2xl hover:-translate-y-1
-                 transition-all duration-300 border border-transparent
-                 hover:border-[#D7CCC8]"
+      className="
+        w-full
+        bg-white
+        rounded-2xl
+        shadow-md
+        p-4 sm:p-5 lg:p-6
+        text-left
+        cursor-pointer
+        hover:shadow-xl
+        hover:-translate-y-1
+        active:scale-[0.98]
+        transition-all
+        duration-300
+        border
+        border-transparent
+        hover:border-[#D7CCC8]
+      "
     >
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-[#4E342E]">
+      <div className="flex items-center justify-between mb-3">
+
+        <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-[#4E342E]">
           {title}
         </h3>
 
         {icon && (
-          <span className="text-3xl">
+          <span className="text-2xl sm:text-3xl">
             {icon}
           </span>
         )}
+
       </div>
 
-      <p className={`text-4xl font-bold ${color}`}>
+      <p className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${color}`}>
         {value}
       </p>
-    </div>
+    </button>
   );
 }
 
