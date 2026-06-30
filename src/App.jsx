@@ -12,6 +12,7 @@ import Calendar from "./pages/Calendar";
 import Welcome from "./pages/Welcome";
 import ReviewLibrary from "./pages/ReviewLibrary";
 import StudyWorkspace from "./pages/StudyWorkspace";
+import About from "./pages/About";
 
 import { getUser } from "./services/storage";
 
@@ -30,7 +31,7 @@ function App() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-[#F8F5F2]">
+      <div className="flex items-center justify-center min-h-screen bg-[#F5F7FA]">
         Loading CELE OS...
       </div>
     );
@@ -41,7 +42,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8F5F2] flex">
+    <div className="min-h-screen bg-[#F5F7FA] flex">
 
       <Sidebar
         collapsed={collapsed}
@@ -55,7 +56,7 @@ function App() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileOpen(true)}
-          className="fixed top-4 left-4 z-40 md:hidden bg-[#6d4c41] text-white p-3 rounded-xl shadow-lg"
+          className="fixed top-4 left-4 z-40 md:hidden bg-[#0B3C5D] text-white p-3 rounded-xl shadow-lg"
         >
           ☰
         </button>
@@ -102,6 +103,11 @@ function App() {
             <Route
               path="/calendar"
               element={<Calendar />}
+            />
+
+            <Route
+              path="/about"
+              element={<About />}
             />
 
           </Routes>
