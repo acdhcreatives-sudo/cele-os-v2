@@ -1,79 +1,165 @@
 import { NavLink } from "react-router-dom";
 
-function Sidebar() {
+function Sidebar({
+  collapsed,
+  setCollapsed,
+  mobileOpen,
+  setMobileOpen,
+}) {
+  const closeMobile = () => {
+    if (window.innerWidth < 768) {
+      setMobileOpen(false);
+    }
+  };
+
   const menuClass = ({ isActive }) =>
-    `block p-3 rounded-lg transition ${
+    `flex items-center gap-3 rounded-xl transition-all duration-200 ${
+      collapsed ? "justify-center p-3" : "px-4 py-3"
+    } ${
       isActive
-        ? "bg-[#6d4c41] text-white font-bold"
-        : "hover:bg-[#5d4037] text-white"
+        ? "bg-[#6d4c41] text-white font-semibold"
+        : "text-gray-200 hover:bg-[#5d4037]"
     }`;
 
   return (
-    <aside className="w-72 bg-[#3e2723] text-white p-6 min-h-screen">
+    <>
+      {/* Mobile Overlay */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
 
-      <h1 className="text-3xl font-bold mb-10">
-        CELE OS
-      </h1>
+      <aside
+        className={`
+          fixed md:sticky top-0 left-0 z-50
+          h-screen bg-[#3e2723] text-white shadow-xl
+          transition-all duration-300
 
-      <nav className="space-y-3">
+          ${
+            mobileOpen
+              ? "translate-x-0"
+              : "-translate-x-full md:translate-x-0"
+          }
 
-        <NavLink
-          to="/dashboard"
-          className={menuClass}
-        >
-          🏠 Dashboard
-        </NavLink>
+          ${collapsed ? "md:w-20" : "md:w-72"}
+          w-72
+        `}
+      >
+        <div className="flex flex-col h-full">
 
-        <NavLink
-          to="/subjects"
-          className={menuClass}
-        >
-          📚 Subjects
-        </NavLink>
+          {/* Header */}
+          <div className="flex items-center justify-between p-4 border-b border-[#5d4037]">
 
-        <NavLink
-          to="/review-library"
-          className={menuClass}
-        >
-          📖 Review Library
-        </NavLink>
+            {!collapsed && (
+              <div>
+                <h1 className="text-xl font-bold">
+                  CELE OS
+                </h1>
 
-        <NavLink
-          to="/sessions"
-          className={menuClass}
-        >
-          ⏱ Study Sessions
-        </NavLink>
+                <p className="text-xs text-gray-300">
+                  Civil Engineering Review
+                </p>
+              </div>
+            )}
 
-        <NavLink
-          to="/analytics"
-          className={menuClass}
-        >
-          📈 Analytics
-        </NavLink>
+            <button
+              onClick={() => {
+                if (window.innerWidth < 768) {
+                  setMobileOpen(false);
+                } else {
+                  setCollapsed(!collapsed);
+                }
+              }}
+              className="w-10 h-10 rounded-lg hover:bg-[#5d4037]"
+            >
+              {window.innerWidth < 768
+                ? "✕"
+                : collapsed
+                ? "☰"
+                : "◀"}
+            </button>
 
-        <NavLink
-          to="/calendar"
-          className={menuClass}
-        >
-          📅 Calendar
-        </NavLink>
+          </div>
 
-      </nav>
+          {/* Navigation */}
+          <nav className="flex-1 p-3 space-y-2">
 
-      <div className="mt-12 border-t border-[#6d4c41] pt-6">
+            <NavLink
+              to="/dashboard"
+              className={menuClass}
+              onClick={closeMobile}
+            >
+              <span>🏠</span>
+              {!collapsed && <span>Dashboard</span>}
+            </NavLink>
 
-        <p className="text-sm text-gray-300">
-          CELE OS v2
-        </p>
+            <NavLink
+              to="/subjects"
+              className={menuClass}
+              onClick={closeMobile}
+            >
+              <span>📚</span>
+              {!collapsed && <span>Subjects</span>}
+            </NavLink>
 
-        <p className="text-xs text-gray-400 mt-1">
-          Built by Monica 💙
-        </p>
+            <NavLink
+              to="/review-library"
+              className={menuClass}
+              onClick={closeMobile}
+            >
+              <span>📖</span>
+              {!collapsed && <span>Review Library</span>}
+            </NavLink>
 
-      </div>
+            <NavLink
+              to="/sessions"
+              className={menuClass}
+              onClick={closeMobile}
+            >
+              <span>⏱</span>
+              {!collapsed && <span>Study Sessions</span>}
+            </NavLink>
 
-    </aside>
+            <NavLink
+              to="/analytics"
+              className={menuClass}
+              onClick={closeMobile}
+            >
+              <span>📈</span>
+              {!collapsed && <span>Analytics</span>}
+            </NavLink>
+
+            <NavLink
+              to="/calendar"
+              className={menuClass}
+              onClick={closeMobile}
+            >
+              <span>📅</span>
+              {!collapsed && <span>Calendar</span>}
+            </NavLink>
+
+          </nav>
+
+          {/* Footer */}
+          {!collapsed && (
+            <div className="border-t border-[#5d4037] p-4">
+
+              <p className="text-sm text-gray-300">
+                CELE OS v2
+              </p>
+
+              <p className="text-xs text-gray-400 mt-1">
+                Built by Monica 💙
+              </p>
+
+            </div>
+          )}
+
+        </div>
+      </aside>
+    </>
   );
 }
 

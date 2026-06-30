@@ -19,6 +19,9 @@ function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   useEffect(() => {
     const savedUser = getUser();
     setUser(savedUser);
@@ -38,52 +41,77 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f8f5f2] flex">
-      <Sidebar />
+    <div className="min-h-screen bg-[#F8F5F2] flex">
 
-      <Routes>
-        <Route
-          path="/"
-          element={<Navigate to="/dashboard" replace />}
-        />
+      <Sidebar
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+        mobileOpen={mobileOpen}
+        setMobileOpen={setMobileOpen}
+      />
 
-        <Route
-          path="/dashboard"
-          element={<Dashboard />}
-        />
+      <main className="flex-1 overflow-auto">
 
-        <Route
-          path="/subjects"
-          element={<Subjects />}
-        />
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setMobileOpen(true)}
+          className="fixed top-4 left-4 z-40 md:hidden bg-[#6d4c41] text-white p-3 rounded-xl shadow-lg"
+        >
+          ☰
+        </button>
 
-        <Route
-          path="/review-library"
-          element={<ReviewLibrary />}
-        />
+        <div className="p-4 md:p-6 lg:p-8">
 
-        <Route
-          path="/study/:id"
-          element={<StudyWorkspace />}
-        />
+          <Routes>
 
-        <Route
-          path="/sessions"
-          element={<Sessions />}
-        />
+            <Route
+              path="/"
+              element={<Navigate to="/dashboard" replace />}
+            />
 
-        <Route
-          path="/analytics"
-          element={<Analytics />}
-        />
+            <Route
+              path="/dashboard"
+              element={<Dashboard />}
+            />
 
-        <Route
-          path="/calendar"
-          element={<Calendar />}
-        />
-      </Routes>
+            <Route
+              path="/subjects"
+              element={<Subjects />}
+            />
+
+            <Route
+              path="/review-library"
+              element={<ReviewLibrary />}
+            />
+
+            <Route
+              path="/study/:id"
+              element={<StudyWorkspace />}
+            />
+
+            <Route
+              path="/sessions"
+              element={<Sessions />}
+            />
+
+            <Route
+              path="/analytics"
+              element={<Analytics />}
+            />
+
+            <Route
+              path="/calendar"
+              element={<Calendar />}
+            />
+
+          </Routes>
+
+        </div>
+
+      </main>
 
       <InstallButton />
+
     </div>
   );
 }
