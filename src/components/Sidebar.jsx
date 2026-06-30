@@ -32,6 +32,13 @@ function Sidebar() {
         </NavLink>
 
         <NavLink
+          to="/review-library"
+          className={menuClass}
+        >
+          📖 Review Library
+        </NavLink>
+
+        <NavLink
           to="/sessions"
           className={menuClass}
         >

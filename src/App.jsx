@@ -10,6 +10,8 @@ import Sessions from "./pages/Sessions";
 import Analytics from "./pages/Analytics";
 import Calendar from "./pages/Calendar";
 import Welcome from "./pages/Welcome";
+import ReviewLibrary from "./pages/ReviewLibrary";
+import StudyWorkspace from "./pages/StudyWorkspace";
 
 import { getUser } from "./services/storage";
 
@@ -37,7 +39,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#f8f5f2] flex">
-
       <Sidebar />
 
       <Routes>
@@ -57,6 +58,16 @@ function App() {
         />
 
         <Route
+          path="/review-library"
+          element={<ReviewLibrary />}
+        />
+
+        <Route
+          path="/study/:id"
+          element={<StudyWorkspace />}
+        />
+
+        <Route
           path="/sessions"
           element={<Sessions />}
         />
@@ -73,7 +84,6 @@ function App() {
       </Routes>
 
       <InstallButton />
-
     </div>
   );
 }
